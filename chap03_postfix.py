@@ -4,7 +4,7 @@ def evaluatePostfixExpression(expression):
   stack = []
 
   for value in ops:
-     if (value.isnumeric()):
+     if value.isnumeric():
         stack.append(value)
      else:
         secondOperand = str(stack.pop())
