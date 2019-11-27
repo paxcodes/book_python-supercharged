@@ -1,5 +1,6 @@
 import pytest
 from chap10_2 import Money
+from chap10_2 import UnsupportedExchangeRate
 
 
 @pytest.fixture
@@ -19,4 +20,12 @@ def test_addingMoneyWithStaticValue(oneUsd):
 
 def test_addingMoneyOfDifferentUnits(oneUsd):
     twoCad = Money('2.0', 'CAD')
-    assert Money('3.0') != oneUsd + twoCad
+    assert Money('2.5', 'CAD') == oneUsd + twoCad
+
+
+def test_unknownUnitsShouldRaiseUnsupportedExchangeRateError(oneUsd):
+    twoPhp = Money('2.0', 'PHP')
+    with pytest.raises(UnsupportedExchangeRate):
+        twoPhp + oneUsd
+
+
