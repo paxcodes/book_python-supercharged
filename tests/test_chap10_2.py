@@ -29,3 +29,6 @@ def test_unknownUnitsShouldRaiseUnsupportedExchangeRateError(oneUsd):
         twoPhp + oneUsd
 
 
+def test_MoneyOfDifferentUnitsShouldNotBeEqual(oneUsd):
+    oneCad = Money('1.0', 'CAD')
+    assert oneCad != oneUsd
